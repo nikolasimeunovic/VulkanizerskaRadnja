@@ -13,7 +13,7 @@ public class VulkanizerskaRadnja {
 	/**
 	 * Lista automobilskih guma
 	 */
-	private LinkedList<AutoGuma> gume = new LinkedList<AutoGuma>();
+	LinkedList<AutoGuma> gume = new LinkedList<AutoGuma>();
 	
 	/**
 	 * Dodaje gumu na pocetak liste gume.
@@ -45,12 +45,15 @@ public class VulkanizerskaRadnja {
 	 * </ul>
 	 */
 	public LinkedList<AutoGuma> pronadjiGumu(String markaModel) {
+		
 		if (markaModel == null)
-			return null;
+			throw new NullPointerException("Marka ne sme biti null!");
 		LinkedList<AutoGuma> novaLista = new LinkedList<AutoGuma>();
 			for(int i=0;i<gume.size();i++)
-				if (gume.get(i).equals(markaModel))
+				if (gume.get(i).getMarkaModel().equals(markaModel))
 					novaLista.add(gume.get(i));
+		if(novaLista.size() == 0)
+			throw new RuntimeException("Nije pronadjena nijedna guma te marke!");
 		
 		return novaLista;
 	}
